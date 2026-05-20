@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/TrezzeCloud.Contracts/TrezzeCloud.Contracts.csproj" />
+  <Project Path="src/TrezzeCloud.Notifications.Api/TrezzeCloud.Notifications.Api.csproj" />
+  <Project Path="src/TrezzeCloud.Notifications.Application/TrezzeCloud.Notifications.Application.csproj" />
+</Solution>
