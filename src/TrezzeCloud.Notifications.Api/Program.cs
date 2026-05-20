@@ -13,20 +13,35 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMassTransit(config =>
 {
     config.AddConsumer<UserCreatedConsumer>();
+    config.AddConsumer<PaymentProcessedConsumer>();
 
     config.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host("localhost", "/", host =>
         {
-            host.Username("guest");
-            host.Password("guest");
+            host.Username(
+            builder.Configuration["RabbitMq:Username"]!);
+
+            host.Password(
+            builder.Configuration["RabbitMq:Password"]!);
         });
 
         cfg.ReceiveEndpoint("notifications-user-created", endpoint =>
         {
             endpoint.ConfigureConsumer<UserCreatedConsumer>(context);
         });
+
+        cfg.ReceiveEndpoint("notifications-payment-processed", endpoint =>
+        {
+            endpoint.ConfigureConsumer<PaymentProcessedConsumer>(context);
+        });
+
     });
+
+    config.AddConsumer<PaymentProcessedConsumer>();
+
+
+
 });
 
 var app = builder.Build();
