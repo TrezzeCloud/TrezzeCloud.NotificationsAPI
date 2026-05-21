@@ -3,6 +3,9 @@ using Scalar.AspNetCore;
 using TrezzeCloud.Notifications.Application.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
+var rabbitHost = builder.Configuration["RabbitMq:Host"] ?? "rabbitmq";
+var rabbitUsername = builder.Configuration["RabbitMq:Username"] ?? "guest";
+var rabbitPassword = builder.Configuration["RabbitMq:Password"] ?? "guest";
 
 builder.Services.AddControllers();
 
@@ -17,14 +20,14 @@ builder.Services.AddMassTransit(config =>
 
     config.UsingRabbitMq((context, cfg) =>
     {
-        cfg.Host("localhost", "/", host =>
-        {
-            host.Username(
-            builder.Configuration["RabbitMq:Username"]!);
-
-            host.Password(
-            builder.Configuration["RabbitMq:Password"]!);
-        });
+        cfg.Host(
+            rabbitHost,
+            "/",
+            host =>
+            {
+                host.Username(rabbitUsername);
+                host.Password(rabbitPassword);
+            });
 
         cfg.ReceiveEndpoint("notifications-user-created", endpoint =>
         {
@@ -37,10 +40,6 @@ builder.Services.AddMassTransit(config =>
         });
 
     });
-
-    config.AddConsumer<PaymentProcessedConsumer>();
-
-
 
 });
 
