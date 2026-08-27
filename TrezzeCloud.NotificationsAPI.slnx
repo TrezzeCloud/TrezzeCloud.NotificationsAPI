@@ -1,5 +1,7 @@
 <Solution>
-  <Project Path="src/TrezzeCloud.Contracts/TrezzeCloud.Contracts.csproj" />
-  <Project Path="src/TrezzeCloud.Notifications.Api/TrezzeCloud.Notifications.Api.csproj" />
-  <Project Path="src/TrezzeCloud.Notifications.Application/TrezzeCloud.Notifications.Application.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/TrezzeCloud.Contracts/TrezzeCloud.Contracts.csproj" />
+    <Project Path="src/TrezzeCloud.Notifications.Application/TrezzeCloud.Notifications.Application.csproj" />
+    <Project Path="src/TrezzeCloud.Notifications.Functions/TrezzeCloud_Notifications_Functions.csproj" />
+  </Folder>
 </Solution>
