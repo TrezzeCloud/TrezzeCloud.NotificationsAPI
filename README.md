@@ -2,7 +2,7 @@
 
 Este host ASP.NET Core foi substituído na Fase 3 pelas Azure Functions em repositório próprio. **Não deve mais ser implantado**, nem executado junto às Functions nas mesmas filas RabbitMQ: os consumidores disputariam as mensagens.
 
-Novo repositório: [TrezzeCloud.Notifications.Functions](https://github.com/GuiMassi/TrezzeCloud.Notifications.Functions).
+Novo repositório: [TrezzeCloud.Notifications.Functions](https://github.com/TrezzeCloud/TrezzeCloud.Notifications.Functions).
 
 No workspace local, a implementação atual fica em `../TrezzeCloud.Notifications.Functions`, com solução independente, Dockerfile, 33 testes e infraestrutura Bicep em `infra/azure`. O endereço remoto acima é o destino previsto; esta migração não cria nem publica o repositório no GitHub.
 
