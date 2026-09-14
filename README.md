@@ -1,63 +1,13 @@
-# README - NotificationsAPI
+# TrezzeCloud.NotificationsAPI — legado
 
-```md
-# TrezzeCloud.NotificationsAPI
+Este host ASP.NET Core foi substituído na Fase 3 pelas Azure Functions em repositório próprio. **Não deve mais ser implantado**, nem executado junto às Functions nas mesmas filas RabbitMQ: os consumidores disputariam as mensagens.
 
-Microsserviço responsável pelo envio de notificações.
+A implementação serverless foi publicada no repositório: [TrezzeCloud.Notifications.Functions](https://github.com/TrezzeCloud/TrezzeCloud.Notifications.Functions).
 
-## Responsabilidades
+No workspace local, a implementação atual fica em `../TrezzeCloud.Notifications.Functions`, com solução independente, Dockerfile, 33 testes e infraestrutura Bicep em `infra/azure`.
 
-- Consumo de UserCreatedEvent
-- Consumo de PaymentProcessedEvent
-- Simulação de envio de e-mails
+Permanecem aqui apenas o código legado `Notifications.Api`, `Notifications.Application` e suas cópias de `TrezzeCloud.Contracts`. Os contratos são necessários aos consumidores antigos. A solução foi ajustada para permitir compilar o legado; o Dockerfile da raiz foi preservado somente como registro histórico, não como estratégia de implantação.
 
----
+O projeto Functions, seus testes e fixture foram transferidos somente após restore, build, 33 testes, build Docker e descoberta dos dois triggers pelo host no novo repositório. O histórico Git e as branches main foram preservados.
 
-# Tecnologias
-
-- .NET 10
-- ASP.NET Core
-- RabbitMQ
-- MassTransit
-- Docker
-- Kubernetes
-
----
-
-# Variáveis de Ambiente
-
-| Variável | Descrição |
-|---|---|
-| RabbitMq__Host | Host RabbitMQ |
-| RabbitMq__Username | Usuário RabbitMQ |
-| RabbitMq__Password | Senha RabbitMQ |
-
----
-
-# Executar Localmente
-
-```bash
-dotnet restore
-dotnet run
-````
-
----
-
-# Docker
-
-```bash
-docker build -t trezzecloud-notifications-api .
-```
-
----
-
-# Kubernetes
-
-Manifestos disponíveis em:
-
-```txt
-k8s/notifications-api
-```
-
-```
-```
+A documentação operacional anterior pode ser consultada no histórico Git. Para executar ou implantar as Functions, use exclusivamente a documentação do novo repositório.

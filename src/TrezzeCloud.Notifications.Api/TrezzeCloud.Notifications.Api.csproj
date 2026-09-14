@@ -10,6 +10,8 @@
     <PackageReference Include="MassTransit" Version="8.5.3" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
+    <!-- Pin the patched 2.x dependency used by ASP.NET Core OpenAPI and Swashbuckle (CVE-2026-49451). -->
+    <PackageReference Include="Microsoft.OpenApi" Version="2.7.5" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.14.14" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
   </ItemGroup>
